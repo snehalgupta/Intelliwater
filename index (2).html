@@ -264,7 +264,7 @@ function timerset(){
             var fh=fso.OpenTextFile(path,1,false,0);
             var ftext=fh.ReadAll();
             var n=ftext.indexOf("Node ID : "+output);
-            var n1=ftext.indexOf("Present Materialoisture : ",n);
+            var n1=ftext.indexOf("Present Moisture : ",n);
             var n2=ftext.indexOf("\n",n1);
             var res=ftext.substring(n1+19,n2);
             document.getElementById("hi").innerHTML=res;
