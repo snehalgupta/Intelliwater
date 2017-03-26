@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./material.min.css">
+    <link rel="stylesheet" href="./mycss.css">
+    <script src="./material.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
+
+
+  	
+
+    function onoff(){
+      currentvalue=document.getElementById('onoff').value;
+      if(currentvalue == "TURN-OFF"){
+        document.getElementById('onoff').value="TURN-ON";
+        writeTextFile("Status : OFF");
+      }
+      else{
+        document.getElementById('onoff').value="TURN-OFF";
+        writeTextFile("Status : ON");
+      }
+    }
+
+    function onoff1(){
+      currentvalue=document.getElementById('onoff1').value;
+      if(currentvalue == "Weather OFF"){
+        document.getElementById('onoff1').value="Weather ON";
+        currentvalue1=document.getElementById('onoff').value;
+        writeTextFile("Status : "+currentvalue1+"\n"+"Weathercode :  ");
+         var r=document.getElementById("ka");
+         r.innerHTML=" ";
+         var r=document.getElementById("ki");
+         r.innerHTML=" ";
+      }
+      else{
+        currentvalue1=document.getElementById('onoff').value;
+        document.getElementById('onoff1').value="Weather OFF";
+        writeTextFile("Status : "+currentvalue1);
+        getLocation();
+      }
+    }
+
+    function writeTextFile(output){
+    	
+      var fso=new ActiveXObject("Scripting.FileSystemObject");
+      var fh=fso.OpenTextFile(path,1,false,0);
+      var ftext=fh.ReadAll();
+      fh.close();
+      var a=ftext.indexOf("Status : ");
+      var b=ftext.indexOf("\n",a);
+      var c=ftext.slice(a,b+1);
+      var p=ftext.replace(c,"");
+      var fso=new ActiveXObject("Scripting.FileSystemObject");
+      var fh=fso.CreateTextFile(path,true);
+      fh.WriteLine(output);
+      fh.Write(p);
+      fh.close();
+    }
+    function getLocation(){
+    	var x=document.getElementById("ki");
+    	if(navigator.geolocation){
+    		navigator.geolocation.watchPosition(showPosition);
+    	}
+    	else{
+    		x.innerHTML="geolocation is not supported by the browser";
+    	}
+    }
+    function showPosition(position){
+    	var lat=position.coords.latitude;
+    	var long=position.coords.longitude;
+      var currentvalue1=document.getElementById('onoff').value;
+    	var url="http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&APPID=3e8d4059ab2a8cd35d449b90a307a1fc";
+    	 $.ajax({
+   		 dataType: "jsonp",
+   		 url: url,
+   		 method:"GET",
+    	jsonCallback: 'jsonp',
+   		 cache: false,
+    	success: function (data) {
+      	 var r=document.getElementById("ka");
+      	 r.innerHTML=data.weather[0].description;
+      	 var r=document.getElementById("ki");
+      	 r.innerHTML=data.name;
+         var fso=new ActiveXObject("Scripting.FileSystemObject");
+         var fh=fso.CreateTextFile(path,8,true);
+         fh.WriteLine("Status : "+currentvalue1+"\n"+"Weathercode : "+data.weather[0].id);
+         fh.close();
+   		 },
+    	error: function(data) {
+      	alert("OOPS");
+   		 }
+  		});
+     	 
+}
+function hose(){
+	document.getElementById("id1").style.visibility='hidden';
+	document.getElementById("id2").style.visibility='visible';
+  setreq();
+  
+}
+function seho(){
+	document.getElementById("id2").style.visibility='hidden';
+	document.getElementById("id1").style.visibility='visible';
+  document.getElementById("sample3").options.length = 0;
+ // document.getElementById("v1").style.visibility='hidden';
+ // document.getElementById("v2").style.visibility='hidden';
+}
+function change(){
+  var output=document.getElementById("sample5").value;
+  var fso=new ActiveXObject("Scripting.FileSystemObject");
+  var fh=fso.OpenTextFile(path,1,false,0);
+  var ftext=fh.ReadAll();
+  fh.close();
+  var x=ftext.indexOf("Node ID : "+output);
+  if(x == -1){
+  var fh=fso.OpenTextFile(path,8,true);
+  fh.WriteLine("\nNode ID : "+ output);
+  fh.close();
+  document.getElementById("setwater").style.display='';}
+  else{
+    var a=ftext.indexOf("Present Moisture : ",x);
+    var b=ftext.indexOf("\n",a);
+    var c=ftext.slice(x,b+2);
+    var p=ftext.replace(c,"");
+    var fh=fso.CreateTextFile(path,true);
+    fh.Write(p);
+    fh.WriteLine("\nNode ID : "+ output);
+    fh.close();
+    document.getElementById("setwater").style.display='';
+  }
+}
+function change1(){
+  var output1=document.getElementById("sample3");
+  var output=output1.options[output1.selectedIndex].value;
+ // document.write(output);
+  var fso=new ActiveXObject("Scripting.FileSystemObject");
+  var fh=fso.OpenTextFile(path,1,false,0);
+  var ftext=fh.ReadAll();
+  var n=ftext.indexOf("Node ID : "+output);
+  var n1=ftext.indexOf(": ",n);
+  var n2=ftext.indexOf(": ",n+9);
+  var n3=ftext.indexOf(": ",n2+2);
+  var y=ftext.indexOf("\n",n1);
+  var y1=ftext.indexOf("\n",n2);
+  var y2=ftext.indexOf("\n",n3);
+  var res=ftext.substring(n1+2,y+1);
+  var res1=ftext.substring(n2+2,y1+1);
+  var res2=ftext.substring(n3+2,y2+1);
+  fh.close();
+  if(n == -1){
+  document.getElementById("dataw").innerHTML=" ";
+  document.getElementById("datav").innerHTML=" ";
+  document.getElementById("dataq").innerHTML=" ";
+  document.getElementById("viewnode").style.display='';
+  }
+  else{
+  document.getElementById("dataw").innerHTML=res;
+  document.getElementById("datav").innerHTML=res1;
+  document.getElementById("dataq").innerHTML=res2;}
+  document.getElementById("viewnode").style.display='';
+}
+function change2(){
+  var output=document.getElementById("sample4").value;
+  var fso=new ActiveXObject("Scripting.FileSystemObject");
+  var fh=fso.OpenTextFile(path,1,false,0);
+  var ftext=fh.ReadAll();
+  var n=ftext.indexOf("Node ID : "+output);
+  fh.close();
+  if(n == -1){
+    document.getElementById("hi").innerHTML=" ";
+  }
+  else{
+  var n1=ftext.indexOf("Present Moisture : ",n);
+  var n2=ftext.indexOf("\n",n1);
+  var res=ftext.substring(n1+19,n2);
+  document.getElementById("hi").innerHTML=res;}
+ 
+  //timerset();
+}
+function done(){
+  var output=document.getElementById("sample").value;
+  var fso=new ActiveXObject("Scripting.FileSystemObject");
+  var fh=fso.OpenTextFile(path,8,true);
+  fh.WriteLine("Node Moisture Requirement : "+output+"\nPresent Moisture : ");
+  fh.close();
+  var output1=document.getElementById("sample5").value;
+  document.getElementById("sample").value=null;
+  document.getElementById("setwater").style.display='none';
+  document.getElementById("sample5").value=null;
+  var sel = document.getElementById("sample3");
+  var opt = document.createElement("option");
+  opt.innerHTML = output1 ;
+  opt.value = output1 ;
+  sel.appendChild(opt);
+  
+  
+}
+function setreq(){
+  var fso=new ActiveXObject("Scripting.FileSystemObject");
+  var f=fso.OpenTextFile(path,1,false,0);
+  var ftext=f.ReadAll();
+  f.close();
+  var n=ftext.indexOf("Node ID : ");
+  var arr = [];
+  var sel = document.getElementById("sample3");
+  while(n != -1){
+    var i=ftext.indexOf("\n",n);
+    arr.push(ftext.substring(n+10,i));
+    n=ftext.indexOf("Node ID : ",n+1);
+  }
+  for (var j = 0; j < arr.length; j++) {
+        var opt = document.createElement("option");
+        opt.innerHTML = arr[j];
+        opt.value = arr[j];
+        sel.appendChild(opt);
+    }
+}
+
+function timerset(){
+  document.getElementById("viewnode2").style.display='';
+  change2();
+  if(document.getElementById("hi").innerHTML == " " ){
+    var reset2=document.getElementById("reset1");
+    document.getElementById("time").innerHTML=" ";
+     reset2.onclick=function(){
+     document.getElementById("viewnode2").style.display='none';
+     document.getElementById("sample4").value=null;
+    change2();
+   }
+  }
+  else{
+  duration=60*5;
+  display=document.getElementById("time");
+   var timer = duration, minutes, seconds;
+   var reset1=document.getElementById("reset");
+   var reset2=document.getElementById("reset1");
+    var eri=setInterval(clock, 1000); 
+    reset1.onclick=function(){
+    clearInterval(eri);
+    eri=null;
+    timer=duration;
+    change2();
+    eri=setInterval(clock, 1000);
+   }
+   reset2.onclick=function(){
+     document.getElementById("viewnode2").style.display='none';
+     document.getElementById("sample4").value=null;
+     clearInterval(eri);
+    eri=null;
+    timer=duration;
+    change2();
+   }
+    function clock(){
+      minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.innerHTML = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = duration;
+            var output=document.getElementById("sample4").value;
+            var fso=new ActiveXObject("Scripting.FileSystemObject");
+            var fh=fso.OpenTextFile(path,1,false,0);
+            var ftext=fh.ReadAll();
+            var n=ftext.indexOf("Node ID : "+output);
+            var n1=ftext.indexOf("Present Materialoisture : ",n);
+            var n2=ftext.indexOf("\n",n1);
+            var res=ftext.substring(n1+19,n2);
+            document.getElementById("hi").innerHTML=res;
+        }
+    }
+  }
+}
+
+    </script>
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>IntelliWater</title>
+</head>
+<body>
+<!-- Always shows a header, even in smaller screens. -->
+
+<div id="id1" class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="visibility: visible" >
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="heading-1"><img class="mdl-button mdl-button-squarer" disabled src="./logo.png">IntelliWater</span>
+      <!-- <div class="mdl-layout-spacer"></div> -->
+      <span class="mdl-layout-title-center topcenterHeading"><div class="topcenterHeading"><h4>HOME</h4></div></span>
+      <!-- Add spacer, to align navigation to the right -->
+      <span class="mdl-layout-title-center">
+      <!-- Accent-colored raised button with ripple -->
+      <span class="mdl-layout-title-center">   </span>
+      
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="hose();">
+        SETTINGS
+      </button>
+      <!-- Accent-colored raised button with ripple -->
+     <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="TURN-ON" id="onoff" onclick="onoff();" style="background-color:#228B22">
+      <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Weather ON" id="onoff1" onclick="onoff1();" style="background-color:#ffff00">
+      </span>
+    </div>
+  </header>
+    <main class="mdl-layout__content">
+    <div class="page-content">
+    <!-- Your content goes here -->
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+          <div class="mdl-tabs__tab-bar">
+              <a href="#starks-panel" class="mdl-tabs__tab is-active"><h6>RAIN FORECAST</h6></a>
+              <a href="#lannisters-panel" class="mdl-tabs__tab"><h6>SOIL INFORMATION</h6></a>
+              <!-- <a href="#targaryens-panel" class="mdl-tabs__tab">Targaryens</a> -->
+          </div>
+
+          <div class="mdl-tabs__panel is-active" id="starks-panel">
+          <div class="container">
+          <span>
+             <div class="container-tab-heading">
+             RAIN FORECAST
+             </div>
+             <div class="container-tab-heading">
+                 <button id="getit" onclick="getLocation();" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                   <i class="material-icons">refresh</i>
+                 </button>
+             </div>
+             <!-- Simple list -->
+          </span>
+              <style>
+              .demo-list-item {
+                width: 300px;
+              }
+              </style>
+              <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+              <ul class="demo-list-item mdl-list">
+                  <thead>
+                      
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>
+                              <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                  <h6 >Region</h6>
+                                </span>
+                              </li>
+                          </td>
+                          <td><h5>:</h5></td>
+                          <td><h6 id="ki"></h6></td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                  <h6 >Weather Description</h6>
+                                </span>
+                              </li>
+                          </td>
+                          <td><h5>:</h5></td>
+                          <td><h6 id="ka" ></h6></td>
+                      </tr>
+                  </tbody>
+              </ul>
+              </table>
+          </div>
+          </div>
+          <div class="mdl-tabs__panel" id="lannisters-panel">
+            <div class="container">
+            <span>
+               <div class="container-tab-heading">
+               SOIL INFORMATION
+               </div>
+               <div class="container-tab-heading">
+                   <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="reset">
+                     <i class="material-icons">refresh</i>
+                   </button>
+               </div>
+               <!-- Simple list -->
+            </span>
+                <style>
+                .demo-list-item {
+                  width: 300px;
+                }
+                </style>
+                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+                <ul class="demo-list-item mdl-list">
+                    <thead>
+                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <li class="mdl-list__item">
+                                  <span class="mdl-list__item-primary-content">
+                                    <h6>Select Node</h6>
+                                  </span>
+                                </li>
+                            </td>
+                            <td><h5>:</h5></td>
+                            <td>
+                            	<form action="#">
+                            	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            	    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                            	    <label class="mdl-textfield__label" for="sample4">Number</label>
+                            	    <span class="mdl-textfield__error">Input is not a number!</span>
+                            	  </div>
+                            	</form>
+                            	<button  class="mdl-button mdl-js-button mdl-button--raised" onclick="timerset();">
+                            	  Continue
+                            	</button>
+                            </td>
+                        </tr>
+                        <tr style="display: none" id="viewnode2">
+                            <td>
+                                <li class="mdl-list__item">
+                                  <span class="mdl-list__item-primary-content">
+                                    <h6>Data</h6>
+                                  </span>
+                                </li>
+                            </td>
+                            <td><h5>:</h5></td>
+                            <td>
+                                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+                                <ul class="demo-list-item mdl-list">
+                                    <thead>
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <li class="mdl-list__item">
+                                                  <span class="mdl-list__item-primary-content">
+                                                    <h6>Soil moisture</h6>
+                                                  </span>
+                                                </li>
+                                            </td>
+                                            <td><h5>:</h5></td>
+                                            <td id="hi"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <li class="mdl-list__item">
+                                                  <span class="mdl-list__item-primary-content">
+                                                    <h6>Next node check at</h6>
+                                                  </span>
+                                                </li>
+                                            </td>
+                                            <td><h5>:</h5></td>
+                                            <td id="time"> </td>
+                                        </tr>
+                                    </tbody>
+                                </ul>
+                                </table>
+                                 <br>
+                                <div>
+                                  <button id="reset1" class="mdl-button mdl-js-button mdl-button--raised">Check another node </button>
+                                </div> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </ul>
+                </table>
+            </div>
+            </div>  
+          </div>
+        </div>
+    </div>
+  </main>
+</div>
+<div id="id2" class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="visibility:hidden ">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="heading-1"><img class="mdl-button mdl-button-squarer" disabled src="./logo.png">IntelliWater</span>
+      <!-- <div class="mdl-layout-spacer"></div> -->
+      <span class="mdl-layout-title-center topcenterHeading"><div class="topcenterHeading"><h4>SETTINGS</h4></div></span>
+      <!-- Add spacer, to align navigation to the right -->
+      <span class="mdl-layout-title-center">
+      <!-- Accent-colored raised button with ripple -->
+      <span class="mdl-layout-title-center">   </span>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="seho();">
+        HOME
+      </button>
+      </span>
+    </div>
+  </header>
+   <main class="mdl-layout__content">
+    <div class="page-content">
+    <!-- Your content goes here -->
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+          <a href="#starks-panel" class="mdl-tabs__tab is-active" >View Node Requirements</a>
+          <a href="#lannisters-panel" class="mdl-tabs__tab">Set Node Requirements</a>
+          <a href="#targaryens-panel" class="mdl-tabs__tab">Other Settings</a>
+      </div>
+
+      <div class="mdl-tabs__panel is-active" id="starks-panel">
+      <div class="container">
+      <style>
+      .demo-list-item {
+        width: 300px;
+      }
+      </style>
+      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+      <ul class="demo-list-item mdl-list">
+          <thead>
+              
+          </thead>
+          <tbody>
+              <tr>
+                  <td>
+                      <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                          <h6 >Select node</h6>
+                        </span>
+                      </li>
+                  </td>
+                  <td><h5>:</h5></td>
+                  <td>
+                    <div>
+                    <select id="sample3" style="min-width: 202px; min-height: 37px; font-size: 18px;">
+                    </select>
+                    </div>
+                    <br>
+                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="change1();">
+                      Continue
+                    </button>
+                  </td>
+              </tr>
+              <tr style="display: none" id="viewnode">
+                  <td colspan="3">
+                      <!-- li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                          <h6 >Weather Description</h6>
+                        </span>
+                      </li> -->
+                      <table class="mdl-data-table mdl-js-data-table" style="width:100%; margin-left:auto; margin-right:auto;">
+                      <ul class="demo-list-item mdl-list">
+                          <thead>
+                              
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                          <h6>Node number</h6>
+                                        </span>
+                                      </li>
+                                  </td>
+                                  <td><h5>:</h5></td>
+                                  <td id="dataw"></td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                          <h6>Moisture requirement</h6>
+                                        </span>
+                                      </li>
+                                  </td>
+                                  <td><h5>:</h5></td>
+                                  <td id="datav"></td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                          <h6>Current moisture level</h6>
+                                        </span>
+                                      </li>
+                                  </td>
+                                  <td><h5>:</h5></td>
+                                  <td id="dataq"></td>
+                              </tr>
+                          </tbody>
+                      </ul>
+                      </table>
+                  </td>
+                  <!-- <td><h5>:</h5></td> --><!-- 
+                  <td><h6 id="ka" ></h6></td> -->
+              </tr>
+          </tbody>
+      </ul>
+      </table>
+      </div>
+      </div>
+      <div class="mdl-tabs__panel" id="lannisters-panel">
+      <div class="container">
+      <style>
+      .demo-list-item {
+        width: 300px;
+      }
+      </style>
+      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+      <ul class="demo-list-item mdl-list">
+          <thead>
+              
+          </thead>
+          <tbody>
+              <tr>
+                  <td>
+                      <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                          <h6 >Select node</h6>
+                        </span>
+                      </li>
+                  </td>
+                  <td><h5>:</h5></td>
+                  <td><!-- <h6 id="ki"> </h6> -->
+                    <!-- Numeric Textfield with Floating Label -->
+                    <form>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample5">
+                        <label class="mdl-textfield__label" for="sample5" id="v2">Number</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </form>
+                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="change();">
+                      Continue
+                    </button>
+                  </td>
+              </tr>
+              <tr style="display: none" id="setwater">
+                  <td>
+                      <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                          <h6 >Set Water Requirement </h6>
+                        </span>
+                      </li>
+                  </td>
+                  <td><h5>:</h5></td>
+                  <td><!-- <h6 id="ki"> </h6> -->
+                    <!-- Numeric Textfield with Floating Label -->
+                    <form>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample">
+                        <label class="mdl-textfield__label" for="sample">Number</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </form> 
+                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="done();">
+                      Done
+                    </button>
+                  </td>
+              </tr>
+          </tbody>
+      </ul>
+      </table>
+      </div>
+      </div>
+      </div>
+      <div class="mdl-tabs__panel" id="targaryens-panel">
+      <div class="container">
+      </div>
+      </div>
+    </div>
+    </div>
+  </main>
+  </div>
+</body>
+</html>
