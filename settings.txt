@@ -1,5 +1,5 @@
 Status : 
-Weathercode : 721
+Weathercode : 
 Node ID : 1
 Node Moisture Requirement : 
 Present Moisture :

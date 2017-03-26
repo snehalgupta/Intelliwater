@@ -126,12 +126,13 @@ function hose(){
 function seho(){
 	document.getElementById("id2").style.visibility='hidden';
 	document.getElementById("id1").style.visibility='visible';
-  document.getElementById("sample3").options.length = 0;
+ // document.getElementById("sample3").options.length = 0;
  // document.getElementById("v1").style.visibility='hidden';
  // document.getElementById("v2").style.visibility='hidden';
 }
 function change(){
-  var output=document.getElementById("sample5").value;
+  var output1=document.getElementById("sample5");
+  var output=output1.options[output1.selectedIndex].value;
   var fso=new ActiveXObject("Scripting.FileSystemObject");
   var fh=fso.OpenTextFile(path,1,false,0);
   var ftext=fh.ReadAll();
@@ -139,17 +140,17 @@ function change(){
   var x=ftext.indexOf("Node ID : "+output);
   if(x == -1){
   var fh=fso.OpenTextFile(path,8,true);
-  fh.WriteLine("\nNode ID : "+ output);
+  fh.WriteLine("Node ID : "+ output);
   fh.close();
   document.getElementById("setwater").style.display='';}
   else{
-    var a=ftext.indexOf("Present Moisture : ",x);
+    var a=ftext.indexOf("Present Moisture :",x);
     var b=ftext.indexOf("\n",a);
-    var c=ftext.slice(x,b+2);
+    var c=ftext.slice(x,b+1);
     var p=ftext.replace(c,"");
     var fh=fso.CreateTextFile(path,true);
     fh.Write(p);
-    fh.WriteLine("\nNode ID : "+ output);
+    fh.WriteLine("Node ID : "+ output);
     fh.close();
     document.getElementById("setwater").style.display='';
   }
@@ -163,14 +164,14 @@ function change1(){
   var ftext=fh.ReadAll();
   var n=ftext.indexOf("Node ID : "+output);
   var n1=ftext.indexOf(": ",n);
-  var n2=ftext.indexOf(": ",n+9);
-  var n3=ftext.indexOf(": ",n2+2);
+  var n2=ftext.indexOf("Node Moisture Requirement :",n1+1);
+  var n3=ftext.indexOf("Present Moisture : ",n2+1);
   var y=ftext.indexOf("\n",n1);
   var y1=ftext.indexOf("\n",n2);
   var y2=ftext.indexOf("\n",n3);
   var res=ftext.substring(n1+2,y+1);
-  var res1=ftext.substring(n2+2,y1+1);
-  var res2=ftext.substring(n3+2,y2+1);
+  var res1=ftext.substring(n2+27,y1+1);
+  var res2=ftext.substring(n3+18,y2+1);
   fh.close();
   if(n == -1){
   document.getElementById("dataw").innerHTML=" ";
@@ -185,9 +186,10 @@ function change1(){
   document.getElementById("viewnode").style.display='';
 }
 function change2(){
-  var output=document.getElementById("sample4").value;
+  var output1=document.getElementById("sample4");
+  var output=output1.options[output1.selectedIndex].value;
   var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var fh=fso.OpenTextFile(path,1,false,0);
+  var fh=fso.OpenTextFile(path,1,false,-2);
   var ftext=fh.ReadAll();
   var n=ftext.indexOf("Node ID : "+output);
   fh.close();
@@ -212,11 +214,7 @@ function done(){
   document.getElementById("sample").value=null;
   document.getElementById("setwater").style.display='none';
   document.getElementById("sample5").value=null;
-  var sel = document.getElementById("sample3");
-  var opt = document.createElement("option");
-  opt.innerHTML = output1 ;
-  opt.value = output1 ;
-  sel.appendChild(opt);
+ 
   
   
 }
@@ -243,6 +241,7 @@ function setreq(){
 
 function timerset(){
   document.getElementById("viewnode2").style.display='';
+  document.getElementById("continue").style.display='none';
   change2();
   if(document.getElementById("hi").innerHTML == " " ){
     var reset2=document.getElementById("reset1");
@@ -257,19 +256,11 @@ function timerset(){
   duration=60*5;
   display=document.getElementById("time");
    var timer = duration, minutes, seconds;
-   var reset1=document.getElementById("reset");
    var reset2=document.getElementById("reset1");
     var eri=setInterval(clock, 1000); 
-    reset1.onclick=function(){
-    clearInterval(eri);
-    eri=null;
-    timer=duration;
-    change2();
-    eri=setInterval(clock, 1000);
-   }
    reset2.onclick=function(){
+     document.getElementById("continue").style.display='';
      document.getElementById("viewnode2").style.display='none';
-     document.getElementById("sample4").value=null;
      clearInterval(eri);
     eri=null;
     timer=duration;
