@@ -160,18 +160,18 @@ function change1(){
   var output=output1.options[output1.selectedIndex].value;
  // document.write(output);
   var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var fh=fso.OpenTextFile(path,1,false,0);
+  var fh=fso.OpenTextFile(path,1,false,-2);
   var ftext=fh.ReadAll();
   var n=ftext.indexOf("Node ID : "+output);
   var n1=ftext.indexOf(": ",n);
   var n2=ftext.indexOf("Node Moisture Requirement :",n1+1);
-  var n3=ftext.indexOf("Present Moisture : ",n2+1);
+  var n3=ftext.indexOf("Present Moisture :",n2+1);
   var y=ftext.indexOf("\n",n1);
   var y1=ftext.indexOf("\n",n2);
   var y2=ftext.indexOf("\n",n3);
   var res=ftext.substring(n1+2,y+1);
   var res1=ftext.substring(n2+27,y1+1);
-  var res2=ftext.substring(n3+18,y2+1);
+  var res2=ftext.substring(n3+17,y2+1);
   fh.close();
   if(n == -1){
   document.getElementById("dataw").innerHTML=" ";
