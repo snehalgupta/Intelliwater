@@ -278,7 +278,15 @@ function timerset(){
   display=document.getElementById("time");
    var timer = duration, minutes, seconds;
    var reset2=document.getElementById("reset1");
+   var reset1=document.getElementById("reset");
     var eri=setInterval(clock, 1000); 
+    reset1.onclick=function(){
+    clearInterval(eri);
+    eri=null;
+    timer=duration;
+    change2();
+    eri=setInterval(clock, 1000);
+   }
    reset2.onclick=function(){
      document.getElementById("continue").style.display='';
      document.getElementById("sample4").disabled=false;
