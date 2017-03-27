@@ -28,12 +28,17 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
     }
 
     function onoff1(){
-      var fso=new ActiveXObject("Scripting.FileSystemObject");
-      currentvalue=document.getElementById('onoff1').innerHTML;
-      if(currentvalue == "Weather-OFF"){
-        document.getElementById('onoff1').innerHTML="Weather-ON";
-        var fh=fso.OpenTextFile(path,1,false,0);
-        var ftext=fh.ReadAll();
+       document.getElementById('onoff1').style.display='none';
+       document.getElementById('onoff2').style.display='';
+       getLocation();
+    }
+
+    function onoff2(){
+       var fso=new ActiveXObject("Scripting.FileSystemObject");
+       document.getElementById('onoff1').style.display='';
+       document.getElementById('onoff2').style.display='none';
+       var fh=fso.OpenTextFile(path,1,false,0);
+       var ftext=fh.ReadAll();
         fh.close();
         var a=ftext.indexOf("Weathercode :");
          var b=ftext.indexOf("Node ID : 1");
@@ -47,13 +52,6 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
          r.innerHTML=" ";
          var r=document.getElementById("ki");
          r.innerHTML=" ";
-      }
-      else{
-        //currentvalue1=document.getElementById('onoff').value;
-        document.getElementById('onoff1').innerHTML="Weather-OFF";
-        //writeTextFile("Status : "+currentvalue1);
-        getLocation();
-      }
     }
 
     function writeTextFile(output){
@@ -119,19 +117,21 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
 function hose(){
 	document.getElementById("id1").style.visibility='hidden';
 	document.getElementById("id2").style.visibility='visible';
-  //setreq();
+  
 
   
 }
 function seho(){
 	document.getElementById("id2").style.visibility='hidden';
 	document.getElementById("id1").style.visibility='visible';
+  //document.getElementById("viewnode").style.display='none';
+  
  // document.getElementById("sample3").options.length = 0;
  // document.getElementById("v1").style.visibility='hidden';
  // document.getElementById("v2").style.visibility='hidden';
 }
 function change(){
-  var output1=document.getElementById("sample5");
+ /* var output1=document.getElementById("sample5");
   var output=output1.options[output1.selectedIndex].value;
   var fso=new ActiveXObject("Scripting.FileSystemObject");
   var fh=fso.OpenTextFile(path,1,false,0);
@@ -141,19 +141,19 @@ function change(){
   if(x == -1){
   var fh=fso.OpenTextFile(path,8,true);
   fh.WriteLine("Node ID : "+ output);
-  fh.close();
-  document.getElementById("setwater").style.display='';}
+  fh.close();*/
+  document.getElementById("setwater").style.display='';/*}
   else{
     var a=ftext.indexOf("Present Moisture :",x);
     var b=ftext.indexOf("\n",a);
     var c=ftext.slice(x,b+1);
-    var p=ftext.replace(c,"");
+    var p=ftext.replace(c,"Node ID : "+ output);
     var fh=fso.CreateTextFile(path,true);
     fh.Write(p);
-    fh.WriteLine("Node ID : "+ output);
+    //fh.WriteLine("Node ID : "+ output);
     fh.close();
     document.getElementById("setwater").style.display='';
-  }
+  }*/
 }
 function change1(){
   var output1=document.getElementById("sample3");
@@ -205,20 +205,40 @@ function change2(){
   //timerset();
 }
 function done(){
-  var output=document.getElementById("sample").value;
+  var output1=document.getElementById("sample5");
+  var output2=document.getElementById("sample").value;
+  var output=output1.options[output1.selectedIndex].value;
   var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var fh=fso.OpenTextFile(path,8,true);
-  fh.WriteLine("Node Moisture Requirement : "+output+"\nPresent Moisture : ");
+  var fh=fso.OpenTextFile(path,1,false,0);
+  var ftext=fh.ReadAll();
   fh.close();
-  var output1=document.getElementById("sample5").value;
+  var x=ftext.indexOf("Node ID : "+output);
+  if(x == -1){
+  var fh=fso.OpenTextFile(path,8,true);
+  fh.WriteLine("Node ID : "+ output);
+  fh.WriteLine("Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");
+  fh.close();
+  document.getElementById("setwater").style.display='';}
+  else{
+    var a=ftext.indexOf("Present Moisture :",x);
+    var b=ftext.indexOf("\n",a);
+    var c=ftext.slice(x,b+1);
+    var p=ftext.replace(c,"Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");
+    var fh=fso.CreateTextFile(path,true);
+    fh.Write(p);
+    //fh.WriteLine("Node ID : "+ output);
+    fh.close();
+    document.getElementById("setwater").style.display='';
+  }
+  alert("Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");
   document.getElementById("sample").value=null;
   document.getElementById("setwater").style.display='none';
-  document.getElementById("sample5").value=null;
+ // document.getElementById("sample5").value=null;
  
   
   
 }
-function setreq(){
+/*function setreq(){
   var fso=new ActiveXObject("Scripting.FileSystemObject");
   var f=fso.OpenTextFile(path,1,false,0);
   var ftext=f.ReadAll();
@@ -237,18 +257,19 @@ function setreq(){
         opt.value = arr[j];
         sel.appendChild(opt);
     }
-}
+}*/
 
 function timerset(){
   document.getElementById("viewnode2").style.display='';
   document.getElementById("continue").style.display='none';
   change2();
+  document.getElementById("sample4").disabled=true;
   if(document.getElementById("hi").innerHTML == " " ){
     var reset2=document.getElementById("reset1");
     document.getElementById("time").innerHTML=" ";
      reset2.onclick=function(){
      document.getElementById("viewnode2").style.display='none';
-     document.getElementById("sample4").value=null;
+     document.getElementById("sample4").disabled=false;
     change2();
    }
   }
@@ -260,6 +281,7 @@ function timerset(){
     var eri=setInterval(clock, 1000); 
    reset2.onclick=function(){
      document.getElementById("continue").style.display='';
+     document.getElementById("sample4").disabled=false;
      document.getElementById("viewnode2").style.display='none';
      clearInterval(eri);
     eri=null;
