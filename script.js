@@ -207,6 +207,12 @@ function change2(){
 function done(){
   var output1=document.getElementById("sample5");
   var output2=document.getElementById("sample").value;
+  if (isNaN(output2) || output2 < 0 || output2 > 1023) {
+        alert("Input not valid");
+
+    } else {
+        
+    
   var output=output1.options[output1.selectedIndex].value;
   var fso=new ActiveXObject("Scripting.FileSystemObject");
   var fh=fso.OpenTextFile(path,1,false,0);
@@ -230,7 +236,7 @@ function done(){
     fh.close();
     document.getElementById("setwater").style.display='';
   }
-  alert("Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");
+  alert("Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");}
   document.getElementById("sample").value=null;
   document.getElementById("setwater").style.display='none';
  // document.getElementById("sample5").value=null;
