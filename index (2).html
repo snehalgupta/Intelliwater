@@ -43,7 +43,7 @@
         SETTINGS
       </button>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="on" onclick="onoff();" style="background-color :#228B22">ON</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="off" onclick="onoff2();" style="background-color:#FF0000 ; display:none; ">OFF</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="off" onclick="onoff3();" style="background-color:#FF0000 ; display:none; ">OFF</button>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "onoff1" onclick="onoff1();" style="background-color:#ffff00" >WEATHER-ON</button>
       <button id="onoff2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="onoff2();"
       style="background-color:#FF0000 ; display:none;">WEATHER-OFF</button> 
@@ -390,10 +390,10 @@
                     <!-- Numeric Textfield with Floating Label -->
                     <form>
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="number" min="0" max="1023" id="sample">
+                        <input class="mdl-textfield__input"  id="sample">
                         <!-- pattern="-?[0-9]*(\.[0-9]+)?" -->
                         <label class="mdl-textfield__label" for="sample">Number from 0 to 1023</label>
-                        <span class="mdl-textfield__error">Input is not an integer from 0 to 1023!</span>
+                        <!--span class="mdl-textfield__error">Input is not an integer from 0 to 1023!</span -->
                       </div>
                     </form> 
                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="done();">

@@ -21,7 +21,7 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
       writeTextFile("Status : ON");
     }
 
-    function onoff2(){
+    function onoff3(){
       document.getElementById("off").style.display='none';
       document.getElementById("on").style.display='';
       writeTextFile("Status : OFF");
