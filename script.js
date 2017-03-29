@@ -37,13 +37,13 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
        var fso=new ActiveXObject("Scripting.FileSystemObject");
        document.getElementById('onoff1').style.display='';
        document.getElementById('onoff2').style.display='none';
-       var fh=fso.OpenTextFile(path,1,false,0);
+       var fh=fso.OpenTextFile(path,1,false,-2);
        var ftext=fh.ReadAll();
         fh.close();
         var a=ftext.indexOf("Weathercode :");
          var b=ftext.indexOf("Node ID : 1");
          var c=ftext.substring(a,b);
-         var p=ftext.replace(c,"Weathercode : "+"\n");
+         var p=ftext.replace(c,"Weathercode :  "+"\n");
          var fh=fso.CreateTextFile(path,true);
          fh.write(p);
         // fh.Write("Weathercode : "+data.weather[0].id+"\n"+p);
@@ -197,7 +197,7 @@ function change2(){
     document.getElementById("hi").innerHTML=" ";
   }
   else{
-  var n1=ftext.indexOf("Present Moisture : ",n);
+  var n1=ftext.indexOf("Present Moisture :",n);
   var n2=ftext.indexOf("\n",n1);
   var res=ftext.substring(n1+19,n2);
   document.getElementById("hi").innerHTML=res;}
