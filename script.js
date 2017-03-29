@@ -1,19 +1,6 @@
 var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
 
 
-  	
-
-    /*function onoff(){
-      currentvalue=document.getElementById('onoff').value;
-      if(currentvalue == "TURN-OFF"){
-        document.getElementById('onoff').value="TURN-ON";
-        writeTextFile("Status : OFF");
-      }
-      else{
-        document.getElementById('onoff').value="TURN-OFF";
-        writeTextFile("Status : ON");
-      }
-    }*/
 
     function onoff(){
       document.getElementById("on").style.display='none';
@@ -46,7 +33,6 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
          var p=ftext.replace(c,"Weathercode :  "+"\n");
          var fh=fso.CreateTextFile(path,true);
          fh.write(p);
-        // fh.Write("Weathercode : "+data.weather[0].id+"\n"+p);
          fh.close();
          var r=document.getElementById("ka");
          r.innerHTML=" ";
@@ -64,10 +50,8 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
       var b=ftext.indexOf("\n");
       var c=ftext.substring(a,b+1);
       var p=ftext.replace(c,"");
-      //var fso=new ActiveXObject("Scripting.FileSystemObject");
       var f=fso.CreateTextFile(path,true);
       f.Write(output+"\n"+p);
-      //fh.Write(p);
       f.close();
     }
     function getLocation(){
@@ -82,7 +66,6 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
     function showPosition(position){
     	var lat=position.coords.latitude;
     	var long=position.coords.longitude;
-      //var currentvalue1=document.getElementById('onoff').value;
     	var url="http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&APPID=3e8d4059ab2a8cd35d449b90a307a1fc";
     	 $.ajax({
    		 dataType: "jsonp",
@@ -105,7 +88,6 @@ var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
          var p=ftext.replace(c,"Weathercode : "+data.weather[0].id+"\n");
          var fh=fso.CreateTextFile(path,true);
          fh.write(p);
-        // fh.Write("Weathercode : "+data.weather[0].id+"\n"+p);
          fh.close();
    		 },
     	error: function(data) {
@@ -124,41 +106,16 @@ function hose(){
 function seho(){
 	document.getElementById("id2").style.visibility='hidden';
 	document.getElementById("id1").style.visibility='visible';
-  //document.getElementById("viewnode").style.display='none';
   
- // document.getElementById("sample3").options.length = 0;
- // document.getElementById("v1").style.visibility='hidden';
- // document.getElementById("v2").style.visibility='hidden';
 }
 function change(){
- /* var output1=document.getElementById("sample5");
-  var output=output1.options[output1.selectedIndex].value;
-  var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var fh=fso.OpenTextFile(path,1,false,0);
-  var ftext=fh.ReadAll();
-  fh.close();
-  var x=ftext.indexOf("Node ID : "+output);
-  if(x == -1){
-  var fh=fso.OpenTextFile(path,8,true);
-  fh.WriteLine("Node ID : "+ output);
-  fh.close();*/
-  document.getElementById("setwater").style.display='';/*}
-  else{
-    var a=ftext.indexOf("Present Moisture :",x);
-    var b=ftext.indexOf("\n",a);
-    var c=ftext.slice(x,b+1);
-    var p=ftext.replace(c,"Node ID : "+ output);
-    var fh=fso.CreateTextFile(path,true);
-    fh.Write(p);
-    //fh.WriteLine("Node ID : "+ output);
-    fh.close();
-    document.getElementById("setwater").style.display='';
-  }*/
+
+  document.getElementById("setwater").style.display='';
 }
 function change1(){
   var output1=document.getElementById("sample3");
   var output=output1.options[output1.selectedIndex].value;
- // document.write(output);
+ 
   var fso=new ActiveXObject("Scripting.FileSystemObject");
   var fh=fso.OpenTextFile(path,1,false,-2);
   var ftext=fh.ReadAll();
@@ -171,7 +128,7 @@ function change1(){
   var y2=ftext.indexOf("\n",n3);
   var res=ftext.substring(n1+2,y+1);
   var res1=ftext.substring(n2+27,y1+1);
-  var res2=ftext.substring(n3+17,y2+1);
+  var res2=ftext.substring(n3+18,y2+1);
   fh.close();
   if(n == -1){
   document.getElementById("dataw").innerHTML=" ";
@@ -236,34 +193,14 @@ function done(){
     fh.close();
     document.getElementById("setwater").style.display='';
   }
-  alert("Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2+"\nPresent Moisture : "+"\n");}
+  alert("Node ID : "+ output+"\n"+"Node Moisture Requirement : "+output2);}
   document.getElementById("sample").value=null;
   document.getElementById("setwater").style.display='none';
- // document.getElementById("sample5").value=null;
+ 
  
   
   
 }
-/*function setreq(){
-  var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var f=fso.OpenTextFile(path,1,false,0);
-  var ftext=f.ReadAll();
-  f.close();
-  var n=ftext.indexOf("Node ID : ");
-  var arr = [];
-  var sel = document.getElementById("sample3");
-  while(n != -1){
-    var i=ftext.indexOf("\n",n);
-    arr.push(ftext.substring(n+10,i));
-    n=ftext.indexOf("Node ID : ",n+1);
-  }
-  for (var j = 0; j < arr.length; j++) {
-        var opt = document.createElement("option");
-        opt.innerHTML = arr[j];
-        opt.value = arr[j];
-        sel.appendChild(opt);
-    }
-}*/
 
 function timerset(){
   document.getElementById("viewnode2").style.display='';
