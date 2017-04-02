@@ -1,8 +1,8 @@
-Status : OFF
-Weathercode : 711
-Node ID : 1
+Status : 
+Weathercode : 721
+Node ID : 1 
 Node Moisture Requirement : 
-Present Moisture :
+Present Moisture : 
 Node ID : 2
-Node Moisture Requirement :
-Present Moisture :
+Node Moisture Requirement : 
+Present Moisture : 

@@ -57,7 +57,7 @@ if(__name__ == "__main__"):
 								count+=1
 
 
-							if(flag == 0 and line[:6] == "Node ID :"):
+							if(flag == 0 and line[:9] == "Node ID :"):
 								flag = 1
 								count = 0
 							file2.write(line)						
@@ -76,7 +76,7 @@ if(__name__ == "__main__"):
 								count+=1
 
 
-							if(flag == 0 and line[:6] == "Node ID :"):
+							if(flag == 0 and line[:9] == "Node ID :"):
 								if(flag2 == 0):
 									flag2 = 1
 								else:
