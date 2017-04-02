@@ -1,4 +1,4 @@
-var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
+var path = "D:\\Anderson\ Files\\Official\\Projects\\IntelliWater\\Intelliwaterv1.1\\settings.txt";
 
 
 
