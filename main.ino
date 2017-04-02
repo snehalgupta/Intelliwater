@@ -37,8 +37,8 @@ void getsettings(){                                     // Gets settings file da
       break;
     }
   }
-  if(weatherCode == 0){ //
-    digitalWrite(13, HIGH);   //  
+  if(weatherCode == 0){ 
+    digitalWrite(13, HIGH);   
   }
   else{
     digitalWrite(13, LOW);
@@ -46,12 +46,18 @@ void getsettings(){                                     // Gets settings file da
   while(1){
     if(Serial.available() > 0){
       Moisture1 = Serial.readString().toInt();
+      if(Moisture1 == 0){
+        Moisture1 = 1023;
+      }
       break;
     }
   }
   while(1){
     if(Serial.available() > 0){
       Moisture2 = Serial.readString().toInt();
+      if(Moisture2 == 0){
+        Moisture2 = 1023;
+      }
       break;
     }
   }

@@ -1,5 +1,5 @@
 Status : OFF
-Weathercode : 761
+Weathercode : 711
 Node ID : 1
 Node Moisture Requirement : 
 Present Moisture :
