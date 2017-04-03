@@ -1,3 +1,4 @@
+
 .container {
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -48,6 +49,19 @@
 	/*margin-bottom: auto;*/
 	position: relative;
 }
-body {
-	background-color: #bafbbb;
+
+html { 
+	zoom: 125%	;
+  background: url(./field.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-opacity: 0.5;
+  /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='field.jpg', sizingMethod='scale');
+  -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='field.jpg', sizingMethod='scale');*/
+}
+
+.whiteFont {
+	color: white;
 }
