@@ -1,4 +1,4 @@
-var path = "D:\\Anderson\ Files\\Official\\Projects\\IntelliWater\\Intelliwaterv1.1\\settings.txt";
+var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
 
     window.onload=function(){
       document.getElementById("getit").disabled=true;
@@ -175,8 +175,10 @@ function done(){
         
     
   var output=output1.options[output1.selectedIndex].value;
+
   var fso=new ActiveXObject("Scripting.FileSystemObject");
-  var fh=fso.OpenTextFile(path,1,false,0);
+
+  var fh=fso.OpenTextFile(path,1,false,-2);
   var ftext=fh.ReadAll();
   fh.close();
   var x=ftext.indexOf("Node ID : "+output);
