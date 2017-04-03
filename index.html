@@ -10,34 +10,34 @@
     <title>IntelliWater</title>
 </head>
 <body>
-<!-- Always shows a header, even in smaller screens. -->
+
 
 <div id="id1" class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="visibility: visible" >
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
+      
       <span class="heading-1"><img class="mdl-button mdl-button-squarer" disabled src="./logo.png">IntelliWater</span>
-      <!-- <div class="mdl-layout-spacer"></div> -->
-      <!-- <span class="mdl-layout-title-center"></span>
+      
+      
       <span class="mdl-layout-title-center topcenterHeading"><div class="topcenterHeading"><h4 style="max-width: 50%;">HOME</h4></div></span> -->
       <span class="heading-1">HOME</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <!-- <span class="mdl-layout-title-center"></span> -->
-      <!-- 
+      
+      
+      
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color :#228B22">ON</button>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#FF0000">OFF</button>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#ffff00" >WEATHER-ON</button>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#ffff00">WEATHER-OFF</button> -->
-        <!-- Accent-colored raised button with ripple -->
+        
      </span>
     </div>
   </header>
-  <!-- Header for buttons only -->
+  
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
+      
       <span class="mdl-layout-title-center">
-      <!-- Accent-colored raised button with ripple -->
+      
       <span class="mdl-layout-title-center">   </span>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="hose();">
         SETTINGS
@@ -47,39 +47,39 @@
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "onoff1" onclick="onoff1();" style="background-color:#FF0000" >WEATHER-OFF</button>
       <button id="onoff2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="onoff2();"
       style="background-color:#ffff00 ; display:none;">WEATHER-ON</button> 
-        <!-- Accent-colored raised button with ripple -->
+        
      </span>
     </div>
   </header>
     <main class="mdl-layout__content">
     <div class="page-content">
-    <!-- Your content goes here -->
+    
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__tab-bar">
-              <a href="#starks-panel" class="mdl-tabs__tab is-active"><h6>RAIN FORECAST</h6></a>
-              <a href="#lannisters-panel" class="mdl-tabs__tab"><h6>SOIL INFORMATION</h6></a>
-              <!-- <a href="#targaryens-panel" class="mdl-tabs__tab">Targaryens</a> -->
+          <div class="mdl-tabs__tab-bar" style="background-color: #d4fe98">
+              <a href="#lannisters-panel" class="mdl-tabs__tab is-active">SOIL INFORMATION</a>
+              <a href="#starks-panel" class="mdl-tabs__tab ">RAIN FORECAST</a>
+              
           </div>
 
-          <div class="mdl-tabs__panel is-active" id="starks-panel">
+          <div class="mdl-tabs__panel" id="starks-panel">
           <div class="container">
           <span>
-             <div class="container-tab-heading">
-             RAIN FORECAST
+             <div class="container-tab-heading whiteFont">
+             <b><font size="4">RAIN FORECAST</font></b>
              </div>
-             <div class="container-tab-heading">
+             
                  <button id="getit" onclick="getLocation();" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
                    <i class="material-icons">refresh</i>
                  </button>
-             </div>
-             <!-- Simple list -->
+             
+             
           </span>
               <style>
               .demo-list-item {
                 width: 300px;
               }
               </style>
-              <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+              <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto; background-color: #d4fe98">
               <ul class="demo-list-item mdl-list">
                   <thead>
                       
@@ -112,25 +112,25 @@
               </table>
           </div>
           </div>
-          <div class="mdl-tabs__panel" id="lannisters-panel">
+          <div class="mdl-tabs__panel  is-active" id="lannisters-panel">
             <div class="container">
             <span>
-               <div class="container-tab-heading">
-               SOIL INFORMATION
+               <div class="container-tab-heading whiteFont">
+               <b><font size="4">SOIL INFORMATION</font></b>
                </div>
-               <div class="container-tab-heading">
+               
                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="reset">
                      <i class="material-icons">refresh</i>
                    </button>
-               </div>
-               <!-- Simple list -->
+               
+               
             </span>
                 <style>
                 .demo-list-item {
                   width: 300px;
                 }
                 </style>
-                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto; background-color: #d4fe98">
                 <ul class="demo-list-item mdl-list">
                     <thead>
                         
@@ -168,7 +168,7 @@
                             </td>
                             <td><h5>:</h5></td>
                             <td>
-                                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+                                <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto; background-color: #d4fe98">
                                 <ul class="demo-list-item mdl-list">
                                     <thead>
                                         
@@ -218,11 +218,11 @@
 <div id="id2" class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="visibility:hidden ">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
+      
       <span class="heading-1"><img class="mdl-button mdl-button-squarer" disabled src="./logo.png">IntelliWater</span>
-      <!-- <div class="mdl-layout-spacer"></div> -->
+      
       <span class="heading-1">SETTINGS</span>
-      <!-- Add spacer, to align navigation to the right -->
+      
     </div>
   </header>
   <header class="mdl-layout__header">
@@ -236,22 +236,22 @@
   </header>
    <main class="mdl-layout__content">
     <div class="page-content">
-    <!-- Your content goes here -->
+    
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-      <div class="mdl-tabs__tab-bar">
-          <a href="#starks-panel" class="mdl-tabs__tab is-active" >View Node Requirements</a>
-          <a href="#lannisters-panel" class="mdl-tabs__tab">Set Node Requirements</a>
-          <a href="#targaryens-panel" class="mdl-tabs__tab">Other Settings</a>
+      <div class="mdl-tabs__tab-bar" style="background-color: #d4fe98">
+          <a href="#starks-panel" class="mdl-tabs__tab is-active " >View Node Requirements</a>
+          <a href="#lannisters-panel" class="mdl-tabs__tab ">Set Node Requirements</a>
+          <a href="#targaryens-panel" class="mdl-tabs__tab ">Other Settings</a>
       </div>
 
-      <div class="mdl-tabs__panel is-active" id="starks-panel">
+      <div class="mdl-tabs__panel is-active " id="starks-panel">
       <div class="container">
       <style>
       .demo-list-item {
         width: 300px;
       }
       </style>
-      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto; background-color: #d4fe98">
       <ul class="demo-list-item mdl-list">
           <thead>
               
@@ -267,7 +267,7 @@
                   </td>
                   <td><h5>:</h5></td>
                   <td>
-                    <!-- <div>
+                    
                     <select id="sample3" style="min-width: 202px; min-height: 37px; font-size: 18px;">
                     </select>
                     </div> -->
@@ -285,12 +285,12 @@
               </tr>
               <tr style="display: none" id="viewnode">
                   <td colspan="3">
-                      <!-- li class="mdl-list__item">
+                      
                         <span class="mdl-list__item-primary-content">
                           <h6 >Weather Description</h6>
                         </span>
                       </li> -->
-                      <table class="mdl-data-table mdl-js-data-table" style="width:100%; margin-left:auto; margin-right:auto;">
+                      <table class="mdl-data-table mdl-js-data-table" style="width:100%; margin-left:auto; margin-right:auto; background-color: #d4fe98">
                       <ul class="demo-list-item mdl-list">
                           <thead>
                               
@@ -333,7 +333,7 @@
                       </ul>
                       </table>
                   </td>
-                  <!-- <td><h5>:</h5></td> --><!-- 
+                  
                   <td><h6 id="ka" ></h6></td> -->
               </tr>
           </tbody>
@@ -348,7 +348,7 @@
         width: 300px;
       }
       </style>
-      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto;">
+      <table class="mdl-data-table mdl-js-data-table" style="margin-left:auto; margin-right:auto; background-color: #d4fe98">
       <ul class="demo-list-item mdl-list">
           <thead>
               
@@ -363,8 +363,7 @@
                       </li>
                   </td>
                   <td><h5>:</h5></td>
-                  <td><!-- <h6 id="ki"> </h6> -->
-                    <!-- Numeric Textfield with Floating Label -->
+                  <td>
                     <div>
                       <select id="sample5" style="min-width: 202px; min-height: 37px; font-size: 18px;">
                         <option value="1">Node 1</option>
@@ -386,14 +385,14 @@
                       </li>
                   </td>
                   <td><h5>:</h5></td>
-                  <td><!-- <h6 id="ki"> </h6> -->
-                    <!-- Numeric Textfield with Floating Label -->
+                  <td>
+                    
                     <form>
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input"  id="sample">
-                        <!-- pattern="-?[0-9]*(\.[0-9]+)?" -->
+                        
                         <label class="mdl-textfield__label" for="sample">Number from 0 to 1023</label>
-                        <!--span class="mdl-textfield__error">Input is not an integer from 0 to 1023!</span -->
+                        
                       </div>
                     </form> 
                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="done();">
