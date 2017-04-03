@@ -1,6 +1,8 @@
 var path = "D:\\Anderson\ Files\\Official\\Projects\\IntelliWater\\Intelliwaterv1.1\\settings.txt";
 
-
+    window.onload=function(){
+      document.getElementById("getit").disabled=true;
+    }
 
     function onoff(){
       document.getElementById("on").style.display='none';
@@ -17,6 +19,7 @@ var path = "D:\\Anderson\ Files\\Official\\Projects\\IntelliWater\\Intelliwaterv
     function onoff1(){
        document.getElementById('onoff1').style.display='none';
        document.getElementById('onoff2').style.display='';
+       document.getElementById("getit").disabled=false;
        getLocation();
     }
 
@@ -24,6 +27,7 @@ var path = "D:\\Anderson\ Files\\Official\\Projects\\IntelliWater\\Intelliwaterv
        var fso=new ActiveXObject("Scripting.FileSystemObject");
        document.getElementById('onoff1').style.display='';
        document.getElementById('onoff2').style.display='none';
+       document.getElementById("getit").disabled=true;
        var fh=fso.OpenTextFile(path,1,false,-2);
        var ftext=fh.ReadAll();
         fh.close();
