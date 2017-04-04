@@ -1,8 +1,8 @@
-Status : 
-Weathercode : 
+Status : ON
+Weathercode : 802
 Node ID : 1
-Node Moisture Requirement : 
-Present Moisture :
+Node Moisture Requirement : 100
+Present Moisture : 809
 Node ID : 2
-Node Moisture Requirement :
-Present Moisture :
+Node Moisture Requirement : 550
+Present Moisture : 678

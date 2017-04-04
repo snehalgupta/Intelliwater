@@ -1,4 +1,4 @@
-var path = "C:\\Users\\Snehal\\Desktop\\IntelliWater\\settings.txt";
+var path = "C:\\Users\\Varun\\Desktop\\IntelliwaterLatest\\settings.txt";
 
     window.onload=function(){
       document.getElementById("getit").disabled=true;

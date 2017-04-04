@@ -6,15 +6,15 @@ String systemEN;                                        // Parameters
 int weatherCode, Moisture1, Moisture2;                  // Parameters
 int presentMoisture1, presentMoisture2;                 // Moisture sensor readings
 int baudrate = 9600;                                    // Speed of serial data
-int waterflowDuration = 5000;                           // Motor run time
-long frequency = 600000;                                // Frequency of node check
+int waterflowDuration = 5000;                          // Motor run time
+long frequency = 300000;                                // Frequency of node check
 int motorPin = 3;                                       // Pin that activates the water pump
 int moistureWeatherShift = 50;                          // Decreases moisture requirement by 100
 void setup() {
   Serial.begin(baudrate);
   getsettings();
   pinMode(motorPin, OUTPUT);
-  pinMode(13, OUTPUT); //
+  pinMode(13, OUTPUT);
 }
 void senddata(String message){                          // Sending data to python server through serial port
   Serial.println("fetch");
@@ -65,6 +65,7 @@ void getsettings(){                                     // Gets settings file da
 void loop() {
   getsettings();
   if(systemEN.equals("ON")){
+    digitalWrite(13, HIGH);
     presentMoisture1 = analogRead(A0);
     presentMoisture2 = analogRead(A1);
     updatemoisture(1, presentMoisture1);
@@ -84,6 +85,9 @@ void loop() {
       }
     }
     delay(frequency - 1000);
+  }
+  else{
+    digitalWrite(13, LOW);
   }
   delay(1000);
 }
