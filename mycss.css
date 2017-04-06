@@ -51,7 +51,7 @@
 }
 
 html { 
-	zoom: 125%	;
+  zoom: 125%;
   background: url(./field.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -1,8 +1,8 @@
-Status : ON
-Weathercode : 802
+Status : OFF
+Weathercode : 721
 Node ID : 1
-Node Moisture Requirement : 100
-Present Moisture : 809
+Node Moisture Requirement : 500
+Present Moisture : 
 Node ID : 2
 Node Moisture Requirement : 550
 Present Moisture : 678
