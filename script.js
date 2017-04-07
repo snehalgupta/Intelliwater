@@ -1,4 +1,4 @@
-var path = "C:\\Users\\Varun\\Desktop\\IntelliwaterLatest\\settings.txt";
+var path = "D:\\Anderson Files\\Official\\Python\\Code Center\ -\ backup\\Projects\\IntelliWater\\Intelliwater\\settings.txt";
 
     window.onload=function(){
       document.getElementById("getit").disabled=true;

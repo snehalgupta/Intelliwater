@@ -28,13 +28,13 @@
       <span class="mdl-layout-title-center">
       
       <span class="mdl-layout-title-center">   </span>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="hose();">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="hose()">
         SETTINGS
       </button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="on" onclick="onoff();" style="background-color :#FF0000">OFF</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="off" onclick="onoff3();" style="background-color:#228B22 ; display:none; ">ON</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "onoff1" onclick="onoff1();" style="background-color:#FF0000" >WEATHER-OFF</button>
-      <button id="onoff2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="onoff2();"
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="on" onclick="onoff()" style="background-color :#FF0000">OFF</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="off" onclick="onoff3()" style="background-color:#228B22 ; display:none; ">ON</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "onoff1" onclick="onoff1()" style="background-color:#FF0000" >WEATHER-OFF</button>
+      <button id="onoff2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="onoff2()"
       style="background-color:#ffff00 ; display:none;">WEATHER-ON</button> 
         
      </span>
@@ -57,7 +57,7 @@
              <b><font size="4">RAIN FORECAST</font></b>
              </div>
              
-                 <button id="getit" onclick="getLocation();" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                 <button id="getit" onclick="getLocation()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
                    <!-- <object type="image/svg+xml" data="ic_update_black_48px">Refresh</object> -->
                    <img src="ic_update_black_36dp_1x.png">
                  </button>
@@ -145,7 +145,7 @@
                                 </select>
                               </div>
                               <br>
-                              <button id="continue"  class="mdl-button mdl-js-button mdl-button--raised" onclick="timerset();">
+                              <button id="continue"  class="mdl-button mdl-js-button mdl-button--raised" onclick="timerset()">
                                 Continue
                               </button>
                             </td>
@@ -220,7 +220,7 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title-center">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="seho();">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="seho()">
         HOME
       </button>
       </span>
@@ -265,7 +265,7 @@
                       </select>
                     </div>
                     <br>
-                    <button class="mdl-button mdl-js-button mdl-button--raised"  onclick="change1();">
+                    <button class="mdl-button mdl-js-button mdl-button--raised"  onclick="change1()">
                       Continue
                     </button>
                   </td>
@@ -351,7 +351,7 @@
                       </select>
                     </div>
                     <br>
-                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="change();">
+                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="change()">
                       Continue
                     </button>
                   </td>
@@ -375,7 +375,7 @@
                         
                       </div>
                     </form> 
-                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="done();">
+                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="done()">
                       Done
                     </button>
                   </td>

@@ -21,7 +21,7 @@ def cleanSerialData(data):
 if(__name__ == "__main__"):
 	while(1):
 		try:
-			arduinoSerialData = serial.Serial('com3', 9600)
+			arduinoSerialData = serial.Serial('com6', 9600)
 			break
 		except serial.serialutil.SerialException:
 			pass
@@ -33,7 +33,7 @@ if(__name__ == "__main__"):
 				mode = cleanSerialData(arduinoSerialData.readline())
 		except serial.serialutil.SerialException:
 			try:
-				arduinoSerialData = serial.Serial('com3', 9600)
+				arduinoSerialData = serial.Serial('com6', 9600)
 			except serial.serialutil.SerialException:
 				pass
 		if(mode == "fetch"):
